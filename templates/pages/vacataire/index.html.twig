@@ -9,36 +9,47 @@
                 {{ message }}
             </div>
         {% endfor %}
-            <h1>
-                Mes vacataires
-            </h1>
-            <table class="table table-hover">
-                <thead>
-                    <tr class="table-secondary">
-                        <th scope="col">
-                            Numéro
+        <h1>
+            Mes vacataires
+        </h1>
+        <table class="table table-hover">
+            <thead>
+                <tr class="table-secondary">
+                    <th scope="col">
+                        Numéro
+                    </th>
+                    <th scope="col">
+                        Nom
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for vacataire in vacataires %}
+                    <tr class="table-dark">
+                        <th scope="row">
+                            {{ vacataire.id }}
                         </th>
-                        <th scope="col">
-                            Nom
-                        </th>
+                        <td>
+                            {{ vacataire.nom }}
+                        </td>
+                        <td>
+                            <a href="{{ path('vacataire_edit',{id: vacataire.id}) }}" class="btn btn-info">
+                                Modifier
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{ path('vacataire_remove', { id: vacataire.id }) }}" class="btn btn-warning">
+                                Supprimer
+                            </a>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    {% for vacataire in vacataires %}
-                        <tr class="table-dark">
-                            <th scope="row">
-                                {{ vacataire.id }}
-                            </th>
-                            <td>
-                                {{ vacataire.nom }}
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-            <div class="d-flex justify-content-center mt-4">
-                {{ knp_pagination_render(vacataires) }}
-            </div>
+
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-center mt-4">
+            {{ knp_pagination_render(vacataires) }}
         </div>
-    {% endblock %}
-    
+    </div>
+{% endblock %}
+
